@@ -1,23 +1,23 @@
 //
-//  ViewController.m
+//  FlightSearchMethod.m
 //  FlightTrack
 //
 //  Created by Dustin Dettmer on 5/12/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "FlightSearchMethod.h"
 
-@interface ViewController ()
+@interface FlightSearchMethod ()
 
 @end
 
-@implementation ViewController
+@implementation FlightSearchMethod
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+	// Do any additional setup after loading the view.
 }
 
 - (void)viewDidUnload
@@ -26,14 +26,10 @@
     // Release any retained subviews of the main view.
 }
 
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-    NSLog(@"prepare!");
 }
 
 @end

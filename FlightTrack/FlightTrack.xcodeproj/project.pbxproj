@@ -15,6 +15,12 @@
 		581A0326155EF723009872B3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 581A0325155EF723009872B3 /* AppDelegate.m */; };
 		581A0329155EF723009872B3 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 581A0327155EF723009872B3 /* MainStoryboard.storyboard */; };
 		581A032C155EF723009872B3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 581A032B155EF723009872B3 /* ViewController.m */; };
+		581A0357155F0A15009872B3 /* FlightSearchMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 581A0356155F0A15009872B3 /* FlightSearchMethod.m */; };
+		581A035E155F0BE1009872B3 /* SearchByFlightNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 581A035D155F0BE1009872B3 /* SearchByFlightNumber.m */; };
+		581A0362155F0BFC009872B3 /* SearchByRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 581A0361155F0BFC009872B3 /* SearchByRoute.m */; };
+		581A0366155F0DF5009872B3 /* DateDepartOrArrive.m in Sources */ = {isa = PBXBuildFile; fileRef = 581A0365155F0DF5009872B3 /* DateDepartOrArrive.m */; };
+		581A036A155F1176009872B3 /* AirportSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 581A0369155F1176009872B3 /* AirportSearch.m */; };
+		581A036E155F11CC009872B3 /* AirlineSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 581A036D155F11CC009872B3 /* AirlineSearch.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +37,18 @@
 		581A0328155EF723009872B3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		581A032A155EF723009872B3 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		581A032B155EF723009872B3 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		581A0355155F0A15009872B3 /* FlightSearchMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightSearchMethod.h; sourceTree = "<group>"; };
+		581A0356155F0A15009872B3 /* FlightSearchMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightSearchMethod.m; sourceTree = "<group>"; };
+		581A035C155F0BE1009872B3 /* SearchByFlightNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchByFlightNumber.h; sourceTree = "<group>"; };
+		581A035D155F0BE1009872B3 /* SearchByFlightNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchByFlightNumber.m; sourceTree = "<group>"; };
+		581A0360155F0BFC009872B3 /* SearchByRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchByRoute.h; sourceTree = "<group>"; };
+		581A0361155F0BFC009872B3 /* SearchByRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchByRoute.m; sourceTree = "<group>"; };
+		581A0364155F0DF5009872B3 /* DateDepartOrArrive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateDepartOrArrive.h; sourceTree = "<group>"; };
+		581A0365155F0DF5009872B3 /* DateDepartOrArrive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateDepartOrArrive.m; sourceTree = "<group>"; };
+		581A0368155F1176009872B3 /* AirportSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirportSearch.h; sourceTree = "<group>"; };
+		581A0369155F1176009872B3 /* AirportSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirportSearch.m; sourceTree = "<group>"; };
+		581A036C155F11CC009872B3 /* AirlineSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirlineSearch.h; sourceTree = "<group>"; };
+		581A036D155F11CC009872B3 /* AirlineSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirlineSearch.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +68,7 @@
 		581A0306155EF723009872B3 = {
 			isa = PBXGroup;
 			children = (
+				581A0327155EF723009872B3 /* MainStoryboard.storyboard */,
 				581A031B155EF723009872B3 /* FlightTrack */,
 				581A0314155EF723009872B3 /* Frameworks */,
 				581A0312155EF723009872B3 /* Products */,
@@ -77,11 +96,14 @@
 		581A031B155EF723009872B3 /* FlightTrack */ = {
 			isa = PBXGroup;
 			children = (
-				581A0324155EF723009872B3 /* AppDelegate.h */,
-				581A0325155EF723009872B3 /* AppDelegate.m */,
-				581A0327155EF723009872B3 /* MainStoryboard.storyboard */,
-				581A032A155EF723009872B3 /* ViewController.h */,
-				581A032B155EF723009872B3 /* ViewController.m */,
+				581A036B155F1179009872B3 /* AirlineSearch */,
+				581A0367155F1162009872B3 /* AirportSearch */,
+				581A0363155F0DD3009872B3 /* DateDepartOrArrive */,
+				581A035F155F0BE7009872B3 /* SearchByRoute */,
+				581A035B155F0BC5009872B3 /* SearchByFlightNumber */,
+				581A0359155F0B98009872B3 /* AppDelegate */,
+				581A0358155F0A1A009872B3 /* FlightSearchMethod */,
+				581A035A155F0B9F009872B3 /* ViewController */,
 				581A031C155EF723009872B3 /* Supporting Files */,
 			);
 			path = FlightTrack;
@@ -96,6 +118,78 @@
 				581A0323155EF723009872B3 /* FlightTrack-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		581A0358155F0A1A009872B3 /* FlightSearchMethod */ = {
+			isa = PBXGroup;
+			children = (
+				581A0355155F0A15009872B3 /* FlightSearchMethod.h */,
+				581A0356155F0A15009872B3 /* FlightSearchMethod.m */,
+			);
+			name = FlightSearchMethod;
+			sourceTree = "<group>";
+		};
+		581A0359155F0B98009872B3 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				581A0324155EF723009872B3 /* AppDelegate.h */,
+				581A0325155EF723009872B3 /* AppDelegate.m */,
+			);
+			name = AppDelegate;
+			sourceTree = "<group>";
+		};
+		581A035A155F0B9F009872B3 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				581A032A155EF723009872B3 /* ViewController.h */,
+				581A032B155EF723009872B3 /* ViewController.m */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		581A035B155F0BC5009872B3 /* SearchByFlightNumber */ = {
+			isa = PBXGroup;
+			children = (
+				581A035C155F0BE1009872B3 /* SearchByFlightNumber.h */,
+				581A035D155F0BE1009872B3 /* SearchByFlightNumber.m */,
+			);
+			name = SearchByFlightNumber;
+			sourceTree = "<group>";
+		};
+		581A035F155F0BE7009872B3 /* SearchByRoute */ = {
+			isa = PBXGroup;
+			children = (
+				581A0360155F0BFC009872B3 /* SearchByRoute.h */,
+				581A0361155F0BFC009872B3 /* SearchByRoute.m */,
+			);
+			name = SearchByRoute;
+			sourceTree = "<group>";
+		};
+		581A0363155F0DD3009872B3 /* DateDepartOrArrive */ = {
+			isa = PBXGroup;
+			children = (
+				581A0364155F0DF5009872B3 /* DateDepartOrArrive.h */,
+				581A0365155F0DF5009872B3 /* DateDepartOrArrive.m */,
+			);
+			name = DateDepartOrArrive;
+			sourceTree = "<group>";
+		};
+		581A0367155F1162009872B3 /* AirportSearch */ = {
+			isa = PBXGroup;
+			children = (
+				581A0368155F1176009872B3 /* AirportSearch.h */,
+				581A0369155F1176009872B3 /* AirportSearch.m */,
+			);
+			name = AirportSearch;
+			sourceTree = "<group>";
+		};
+		581A036B155F1179009872B3 /* AirlineSearch */ = {
+			isa = PBXGroup;
+			children = (
+				581A036C155F11CC009872B3 /* AirlineSearch.h */,
+				581A036D155F11CC009872B3 /* AirlineSearch.m */,
+			);
+			name = AirlineSearch;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,6 +257,12 @@
 				581A0322155EF723009872B3 /* main.m in Sources */,
 				581A0326155EF723009872B3 /* AppDelegate.m in Sources */,
 				581A032C155EF723009872B3 /* ViewController.m in Sources */,
+				581A0357155F0A15009872B3 /* FlightSearchMethod.m in Sources */,
+				581A035E155F0BE1009872B3 /* SearchByFlightNumber.m in Sources */,
+				581A0362155F0BFC009872B3 /* SearchByRoute.m in Sources */,
+				581A0366155F0DF5009872B3 /* DateDepartOrArrive.m in Sources */,
+				581A036A155F1176009872B3 /* AirportSearch.m in Sources */,
+				581A036E155F11CC009872B3 /* AirlineSearch.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,6 +283,7 @@
 				581A0328155EF723009872B3 /* en */,
 			);
 			name = MainStoryboard.storyboard;
+			path = FlightTrack;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
