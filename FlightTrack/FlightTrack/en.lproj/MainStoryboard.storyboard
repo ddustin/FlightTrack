@@ -109,10 +109,10 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <connections>
-                                            <segue destination="C23-nT-LPe" kind="push" id="uad-KD-ll2"/>
+                                            <segue destination="C23-nT-LPe" kind="push" identifier="dateDepartsOrArrives" id="uad-KD-ll2"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="k2x-w7-RgV">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="k2x-w7-RgV">
                                         <rect key="frame" x="0.0" y="55" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -163,7 +163,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <connections>
-                                            <segue destination="Tto-XH-MkW" kind="push" id="yEO-Fa-RRJ"/>
+                                            <segue destination="Tto-XH-MkW" kind="push" identifier="airlineSearch" id="yEO-Fa-RRJ"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -187,6 +187,9 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <connections>
+                                            <segue destination="tJq-Be-bcW" kind="push" identifier="searchResults" id="GYu-WJ-4ep"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -238,7 +241,7 @@
             </objects>
             <point key="canvasLocation" x="1600" y="-561"/>
         </scene>
-        <!--Airline Search-->
+        <!--Airline Search - Airline Search-->
         <scene sceneID="s1p-nk-ooC">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ysl-pT-TK6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -268,12 +271,84 @@
                             <outlet property="delegate" destination="Tto-XH-MkW" id="s8g-I7-69K"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="yfF-8J-9uh"/>
+                    <navigationItem key="navigationItem" title="Airline Search" id="yfF-8J-9uh">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="gZX-A2-olA"/>
+                    </navigationItem>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="1596" y="59"/>
+            <point key="canvasLocation" x="1588" y="49"/>
         </scene>
-        <!--Airport Search-->
+        <!--Search Results - Search Results-->
+        <scene sceneID="zpz-pz-IcG">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EBA-Pd-txd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="tJq-Be-bcW" customClass="SearchResults" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="103" sectionHeaderHeight="22" sectionFooterHeight="22" id="MD9-Qk-5mJ">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FlightSearchCell" rowHeight="103" id="rT4-Tj-Qj2" customClass="FlightSearchCell">
+                                <rect key="frame" x="0.0" y="22" width="320" height="103"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="102"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Airline + Flight Number" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="kM7-1K-JMz">
+                                            <rect key="frame" x="8" y="8" width="259" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <size key="shadowOffset" width="-1" height="-1"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Arrival:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="o4V-jA-vwi">
+                                            <rect key="frame" x="8" y="37" width="81" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="00:00 am" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="7zA-lS-0G5">
+                                            <rect key="frame" x="97" y="37" width="81" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="00:00 am" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="l3h-Z7-4g3">
+                                            <rect key="frame" x="97" y="66" width="81" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Departure:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="pqJ-xH-Lz6">
+                                            <rect key="frame" x="8" y="66" width="81" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="tJq-Be-bcW" id="aiO-qc-Ean"/>
+                            <outlet property="delegate" destination="tJq-Be-bcW" id="ENg-FN-viN"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Search Results" id="aG4-Dk-ukx">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="Wir-tv-mJX"/>
+                    </navigationItem>
+                </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="2126" y="49"/>
+        </scene>
+        <!--Airport Search - Airport Search-->
         <scene sceneID="bzX-vH-UVi">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4oK-Wa-dDi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -286,14 +361,34 @@
                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
+                            <scopeButtonTitles>
+                                <string>Title</string>
+                                <string>Title</string>
+                            </scopeButtonTitles>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="PxW-yF-b3h">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="AAN-7v-DZT" detailTextLabel="FrS-JY-Ihx" style="IBUITableViewCellStyleSubtitle" id="PxW-yF-b3h">
                                 <rect key="frame" x="0.0" y="66" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AAN-7v-DZT">
+                                            <rect key="frame" x="10" y="2" width="38" height="22"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FrS-JY-Ihx">
+                                            <rect key="frame" x="10" y="24" width="36" height="18"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                             </tableViewCell>
@@ -303,10 +398,65 @@
                             <outlet property="delegate" destination="DQD-wn-edD" id="Lwx-Cf-i9Q"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="pDb-ok-emh"/>
+                    <navigationItem key="navigationItem" title="Airport Search" id="pDb-ok-emh">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="mdf-WC-i5l"/>
+                        <barButtonItem key="rightBarButtonItem" title="Nearby" id="9R6-ct-sqy">
+                            <connections>
+                                <segue destination="AoN-RR-F9w" kind="push" id="lbn-Ba-doA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="1594" y="658"/>
+        </scene>
+        <!--Nearby Airports - Nearby Airports-->
+        <scene sceneID="Ron-Ed-jcv">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="50S-yH-ddW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="AoN-RR-F9w" customClass="NearbyAirports" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="xty-on-kG0">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="Nkg-BF-qll" detailTextLabel="AKN-xA-xAU" style="IBUITableViewCellStyleSubtitle" id="NQh-oJ-6lF">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Nkg-BF-qll">
+                                            <rect key="frame" x="10" y="2" width="38" height="22"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AKN-xA-xAU">
+                                            <rect key="frame" x="10" y="24" width="36" height="18"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="AoN-RR-F9w" id="iS1-kC-GSn"/>
+                            <outlet property="delegate" destination="AoN-RR-F9w" id="b3c-vw-JIk"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Nearby Airports" id="LF9-cs-iHj">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="dwC-ci-T8m"/>
+                    </navigationItem>
+                </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="2001" y="663"/>
         </scene>
         <!--Flight Search Method-->
         <scene sceneID="YAA-lk-IAy">
@@ -380,7 +530,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <connections>
-                                            <segue destination="C23-nT-LPe" kind="push" id="pPP-gH-uKa"/>
+                                            <segue destination="C23-nT-LPe" kind="push" identifier="dateDepartsOrArrives" id="pPP-gH-uKa"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="RDH-mV-mXl">
@@ -407,7 +557,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <connections>
-                                            <segue destination="DQD-wn-edD" kind="push" id="Twy-Mo-mzg"/>
+                                            <segue destination="DQD-wn-edD" kind="push" identifier="airportSearch" id="Twy-Mo-mzg"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="wYg-Qn-jno">
@@ -434,7 +584,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <connections>
-                                            <segue destination="DQD-wn-edD" kind="push" id="Ljb-F2-yNn"/>
+                                            <segue destination="DQD-wn-edD" kind="push" identifier="airportSearch" id="Ljb-F2-yNn"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="QdE-fg-02M">
@@ -461,7 +611,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <connections>
-                                            <segue destination="Tto-XH-MkW" kind="push" id="fdQ-rW-aHL"/>
+                                            <segue destination="Tto-XH-MkW" kind="push" identifier="airlineSearch" id="fdQ-rW-aHL"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -485,6 +635,9 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <connections>
+                                            <segue destination="tJq-Be-bcW" kind="push" identifier="searchResults" id="VMT-JQ-lo9"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -517,14 +670,23 @@
         <class className="DateDepartOrArrive" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DateDepartOrArrive.h"/>
         </class>
+        <class className="FlightSearchCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FlightSearchCell.h"/>
+        </class>
         <class className="FlightSearchMethod" superclassName="UITabBarController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FlightSearchMethod.h"/>
+        </class>
+        <class className="NearbyAirports" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NearbyAirports.h"/>
         </class>
         <class className="SearchByFlightNumber" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchByFlightNumber.h"/>
         </class>
         <class className="SearchByRoute" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchByRoute.h"/>
+        </class>
+        <class className="SearchResults" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchResults.h"/>
         </class>
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
@@ -536,8 +698,9 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Twy-Mo-mzg"/>
-        <segue reference="pPP-gH-uKa"/>
-        <segue reference="fdQ-rW-aHL"/>
+        <segue reference="GYu-WJ-4ep"/>
+        <segue reference="yEO-Fa-RRJ"/>
+        <segue reference="uad-KD-ll2"/>
+        <segue reference="Ljb-F2-yNn"/>
     </inferredMetricsTieBreakers>
 </document>
