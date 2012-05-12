@@ -16,11 +16,32 @@
 @property (retain, nonatomic) IBOutlet KalView *kal;
 @property (retain, nonatomic) IBOutlet SimpleKalDataSource *kalDataSource;
 
+@property (retain, nonatomic) IBOutlet UISegmentedControl *departOrArriveSegment;
+
 @end
 
 @implementation DateDepartOrArrive
 @synthesize kal;
 @synthesize kalDataSource;
+@synthesize departOrArriveSegment;
+@synthesize selectedDate;
+@synthesize dateSearchRelation;
+
+- (void)dealloc {
+    [kal release];
+    [kalDataSource release];
+    self.selectedDate = nil;
+    [departOrArriveSegment release];
+    [super dealloc];
+}
+
+- (NSDate*)selectedDate {
+    
+    if(!selectedDate)
+        selectedDate = [NSDate new];
+    
+    return selectedDate;
+}
 
 - (void)viewDidLoad {
     
@@ -29,9 +50,16 @@
     self.kal.tableView.dataSource = self.kalDataSource;
     
     self.kal.delegate = self;
-    self.kal.logic = [[[KalLogic alloc] initForDate:[NSDate date]] autorelease];
+    self.kal.logic = [[[KalLogic alloc] initForDate:self.selectedDate] autorelease];
     
-    [self.kal selectDate:[KalDate dateFromNSDate:[NSDate date]]];
+    [self.kal selectDate:[KalDate dateFromNSDate:self.selectedDate]];
+    
+    self.departOrArriveSegment.selectedSegmentIndex = self.dateSearchRelation;
+}
+
+- (IBAction)departOrArriveChange:(id)sender {
+    
+    self.dateSearchRelation = self.departOrArriveSegment.selectedSegmentIndex;
 }
 
 - (void)showPreviousMonth
@@ -41,7 +69,8 @@
     
     [self.kal slideDown];
     
-    [self.kalDataSource presentingDatesFrom:self.kal.logic.fromDate to:self.kal.logic.toDate delegate:nil];
+    [self.kalDataSource presentingDatesFrom:self.kal.logic.fromDate
+                                         to:self.kal.logic.toDate delegate:nil];
 }
 
 - (void)showFollowingMonth
@@ -51,7 +80,8 @@
     
     [self.kal slideUp];
     
-    [self.kalDataSource presentingDatesFrom:self.kal.logic.fromDate to:self.kal.logic.toDate delegate:nil];
+    [self.kalDataSource presentingDatesFrom:self.kal.logic.fromDate
+                                         to:self.kal.logic.toDate delegate:nil];
 }
 
 - (void)didSelectDate:(KalDate *)date {
@@ -62,6 +92,8 @@
     [self.kalDataSource removeAllItems];
     
     [self.kalDataSource loadItemsFromDate:from toDate:to];
+    
+    self.selectedDate = date.NSDate;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -69,14 +101,10 @@
     return interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
 }
 
-- (void)dealloc {
-    [kal release];
-    [kalDataSource release];
-    [super dealloc];
-}
 - (void)viewDidUnload {
     [self setKal:nil];
     [self setKalDataSource:nil];
+    [self setDepartOrArriveSegment:nil];
     [super viewDidUnload];
 }
 @end
