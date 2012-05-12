@@ -25,16 +25,6 @@
 		581A037F155F14B7009872B3 /* NearbyAirports.m in Sources */ = {isa = PBXBuildFile; fileRef = 581A037E155F14B7009872B3 /* NearbyAirports.m */; };
 		581A0383155F159D009872B3 /* FlightSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 581A0382155F159D009872B3 /* FlightSearchCell.m */; };
 		581A03A9155F1927009872B3 /* Kal.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 581A038B155F1927009872B3 /* Kal.bundle */; };
-		581A03AA155F1927009872B3 /* KalDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 581A0392155F1927009872B3 /* KalDataSource.m */; };
-		581A03AB155F1927009872B3 /* KalDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 581A0394155F1927009872B3 /* KalDate.m */; };
-		581A03AC155F1927009872B3 /* KalGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 581A0396155F1927009872B3 /* KalGridView.m */; };
-		581A03AD155F1927009872B3 /* KalLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 581A0398155F1927009872B3 /* KalLogic.m */; };
-		581A03AE155F1927009872B3 /* KalMonthView.m in Sources */ = {isa = PBXBuildFile; fileRef = 581A039A155F1927009872B3 /* KalMonthView.m */; };
-		581A03AF155F1927009872B3 /* KalTileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 581A039D155F1927009872B3 /* KalTileView.m */; };
-		581A03B0155F1927009872B3 /* KalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 581A039F155F1927009872B3 /* KalView.m */; };
-		581A03B1155F1927009872B3 /* KalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 581A03A1155F1927009872B3 /* KalViewController.m */; };
-		581A03B2155F1927009872B3 /* NSDateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 581A03A3155F1927009872B3 /* NSDateAdditions.m */; };
-		581A03B3155F1927009872B3 /* UIViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 581A03A5155F1927009872B3 /* UIViewAdditions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,30 +70,7 @@
 		581A0381155F159D009872B3 /* FlightSearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightSearchCell.h; sourceTree = "<group>"; };
 		581A0382155F159D009872B3 /* FlightSearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightSearchCell.m; sourceTree = "<group>"; };
 		581A038B155F1927009872B3 /* Kal.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Kal.bundle; sourceTree = "<group>"; };
-		581A038C155F1927009872B3 /* Kal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kal.h; sourceTree = "<group>"; };
 		581A038D155F1927009872B3 /* Kal.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Kal.xcodeproj; sourceTree = "<group>"; };
-		581A0390155F1927009872B3 /* Kal_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kal_Prefix.pch; sourceTree = "<group>"; };
-		581A0391155F1927009872B3 /* KalDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KalDataSource.h; sourceTree = "<group>"; };
-		581A0392155F1927009872B3 /* KalDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KalDataSource.m; sourceTree = "<group>"; };
-		581A0393155F1927009872B3 /* KalDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KalDate.h; sourceTree = "<group>"; };
-		581A0394155F1927009872B3 /* KalDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KalDate.m; sourceTree = "<group>"; };
-		581A0395155F1927009872B3 /* KalGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KalGridView.h; sourceTree = "<group>"; };
-		581A0396155F1927009872B3 /* KalGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KalGridView.m; sourceTree = "<group>"; };
-		581A0397155F1927009872B3 /* KalLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KalLogic.h; sourceTree = "<group>"; };
-		581A0398155F1927009872B3 /* KalLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KalLogic.m; sourceTree = "<group>"; };
-		581A0399155F1927009872B3 /* KalMonthView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KalMonthView.h; sourceTree = "<group>"; };
-		581A039A155F1927009872B3 /* KalMonthView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KalMonthView.m; sourceTree = "<group>"; };
-		581A039B155F1927009872B3 /* KalPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KalPrivate.h; sourceTree = "<group>"; };
-		581A039C155F1927009872B3 /* KalTileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KalTileView.h; sourceTree = "<group>"; };
-		581A039D155F1927009872B3 /* KalTileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KalTileView.m; sourceTree = "<group>"; };
-		581A039E155F1927009872B3 /* KalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KalView.h; sourceTree = "<group>"; };
-		581A039F155F1927009872B3 /* KalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KalView.m; sourceTree = "<group>"; };
-		581A03A0155F1927009872B3 /* KalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KalViewController.h; sourceTree = "<group>"; };
-		581A03A1155F1927009872B3 /* KalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KalViewController.m; sourceTree = "<group>"; };
-		581A03A2155F1927009872B3 /* NSDateAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDateAdditions.h; sourceTree = "<group>"; };
-		581A03A3155F1927009872B3 /* NSDateAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDateAdditions.m; sourceTree = "<group>"; };
-		581A03A4155F1927009872B3 /* UIViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewAdditions.h; sourceTree = "<group>"; };
-		581A03A5155F1927009872B3 /* UIViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewAdditions.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -282,30 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				581A038B155F1927009872B3 /* Kal.bundle */,
-				581A038C155F1927009872B3 /* Kal.h */,
 				581A038D155F1927009872B3 /* Kal.xcodeproj */,
-				581A0390155F1927009872B3 /* Kal_Prefix.pch */,
-				581A0391155F1927009872B3 /* KalDataSource.h */,
-				581A0392155F1927009872B3 /* KalDataSource.m */,
-				581A0393155F1927009872B3 /* KalDate.h */,
-				581A0394155F1927009872B3 /* KalDate.m */,
-				581A0395155F1927009872B3 /* KalGridView.h */,
-				581A0396155F1927009872B3 /* KalGridView.m */,
-				581A0397155F1927009872B3 /* KalLogic.h */,
-				581A0398155F1927009872B3 /* KalLogic.m */,
-				581A0399155F1927009872B3 /* KalMonthView.h */,
-				581A039A155F1927009872B3 /* KalMonthView.m */,
-				581A039B155F1927009872B3 /* KalPrivate.h */,
-				581A039C155F1927009872B3 /* KalTileView.h */,
-				581A039D155F1927009872B3 /* KalTileView.m */,
-				581A039E155F1927009872B3 /* KalView.h */,
-				581A039F155F1927009872B3 /* KalView.m */,
-				581A03A0155F1927009872B3 /* KalViewController.h */,
-				581A03A1155F1927009872B3 /* KalViewController.m */,
-				581A03A2155F1927009872B3 /* NSDateAdditions.h */,
-				581A03A3155F1927009872B3 /* NSDateAdditions.m */,
-				581A03A4155F1927009872B3 /* UIViewAdditions.h */,
-				581A03A5155F1927009872B3 /* UIViewAdditions.m */,
 			);
 			path = Kal;
 			sourceTree = "<group>";
@@ -409,16 +353,6 @@
 				581A037B155F137A009872B3 /* SearchResults.m in Sources */,
 				581A037F155F14B7009872B3 /* NearbyAirports.m in Sources */,
 				581A0383155F159D009872B3 /* FlightSearchCell.m in Sources */,
-				581A03AA155F1927009872B3 /* KalDataSource.m in Sources */,
-				581A03AB155F1927009872B3 /* KalDate.m in Sources */,
-				581A03AC155F1927009872B3 /* KalGridView.m in Sources */,
-				581A03AD155F1927009872B3 /* KalLogic.m in Sources */,
-				581A03AE155F1927009872B3 /* KalMonthView.m in Sources */,
-				581A03AF155F1927009872B3 /* KalTileView.m in Sources */,
-				581A03B0155F1927009872B3 /* KalView.m in Sources */,
-				581A03B1155F1927009872B3 /* KalViewController.m in Sources */,
-				581A03B2155F1927009872B3 /* NSDateAdditions.m in Sources */,
-				581A03B3155F1927009872B3 /* UIViewAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
