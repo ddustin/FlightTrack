@@ -19,29 +19,55 @@ static const CGFloat kMonthLabelHeight = 17.f;
 
 @implementation KalView
 
-@synthesize delegate, tableView;
+@synthesize delegate, tableView, logic;
+
+- (void)setup {
+    
+    self.autoresizesSubviews = YES;
+    self.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+}
 
 - (id)initWithFrame:(CGRect)frame delegate:(id<KalViewDelegate>)theDelegate logic:(KalLogic *)theLogic
 {
-  if ((self = [super initWithFrame:frame])) {
-    delegate = theDelegate;
-    logic = [theLogic retain];
-    [logic addObserver:self forKeyPath:@"selectedMonthNameAndYear" options:NSKeyValueObservingOptionNew context:NULL];
-    self.autoresizesSubviews = YES;
-    self.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    if ((self = [super initWithFrame:frame])) {
+        delegate = theDelegate;
+        logic = [theLogic retain];
+        
+        [self setup];
+    }
     
-    UIView *headerView = [[[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, frame.size.width, kHeaderHeight)] autorelease];
+    return self;
+}
+
+- (void)setLogic:(KalLogic *)value {
+    
+    if(value == logic)
+        return;
+    
+    [logic removeObserver:self forKeyPath:@"selectedMonthNameAndYear"];
+    
+    [value retain];
+    [logic release];
+    
+    logic = value;
+    
+    [logic addObserver:self forKeyPath:@"selectedMonthNameAndYear" options:NSKeyValueObservingOptionNew context:NULL];
+    
+    UIView *headerView = [[[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, self.frame.size.width, kHeaderHeight)] autorelease];
     headerView.backgroundColor = [UIColor grayColor];
     [self addSubviewsToHeaderView:headerView];
     [self addSubview:headerView];
     
-    UIView *contentView = [[[UIView alloc] initWithFrame:CGRectMake(0.f, kHeaderHeight, frame.size.width, frame.size.height - kHeaderHeight)] autorelease];
+    UIView *contentView = [[[UIView alloc] initWithFrame:CGRectMake(0.f, kHeaderHeight, self.frame.size.width, self.frame.size.height - kHeaderHeight)] autorelease];
     contentView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    
     [self addSubviewsToContentView:contentView];
     [self addSubview:contentView];
-  }
-  
-  return self;
+}
+
+- (void)awakeFromNib {
+    
+    [self setup];
 }
 
 - (id)initWithFrame:(CGRect)frame

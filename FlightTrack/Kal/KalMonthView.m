@@ -16,19 +16,28 @@ extern const CGSize kTileSize;
 
 @synthesize numWeeks;
 
-- (id)initWithFrame:(CGRect)frame
-{
-  if ((self = [super initWithFrame:frame])) {
+- (void)setup {
     self.opaque = NO;
     self.clipsToBounds = YES;
     for (int i=0; i<6; i++) {
-      for (int j=0; j<7; j++) {
-        CGRect r = CGRectMake(j*kTileSize.width, i*kTileSize.height, kTileSize.width, kTileSize.height);
-        [self addSubview:[[[KalTileView alloc] initWithFrame:r] autorelease]];
-      }
+        for (int j=0; j<7; j++) {
+            CGRect r = CGRectMake(j*kTileSize.width, i*kTileSize.height, kTileSize.width, kTileSize.height);
+            [self addSubview:[[[KalTileView alloc] initWithFrame:r] autorelease]];
+        }
     }
+}
+
+- (id)initWithFrame:(CGRect)frame
+{
+  if ((self = [super initWithFrame:frame])) {
+      [self setup];
   }
   return self;
+}
+
+- (void)awakeFromNib {
+    
+    [self setup];
 }
 
 - (void)showDates:(NSArray *)mainDates leadingAdjacentDates:(NSArray *)leadingAdjacentDates trailingAdjacentDates:(NSArray *)trailingAdjacentDates

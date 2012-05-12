@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Kal.h"
 
-@interface DateDepartOrArrive : UIViewController
+@interface DateDepartOrArrive : UIViewController<KalViewDelegate>
 
 @end

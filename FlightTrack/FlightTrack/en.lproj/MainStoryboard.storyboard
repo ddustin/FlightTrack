@@ -221,23 +221,28 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="DHz-k2-wED">
-                                <rect key="frame" x="20" y="13" width="280" height="44"/>
+                                <rect key="frame" x="8" y="6" width="306" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="Departs"/>
                                     <segment title="Arrives"/>
                                 </segments>
                             </segmentedControl>
-                            <view contentMode="scaleToFill" id="fUS-HT-Yd6">
-                                <rect key="frame" x="0.0" y="76" width="320" height="291"/>
+                            <view contentMode="scaleToFill" id="fUS-HT-Yd6" customClass="KalView">
+                                <rect key="frame" x="0.0" y="57" width="320" height="310"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="0.8868613139" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="Date" id="bi7-f7-Ohj"/>
+                    <connections>
+                        <outlet property="kal" destination="fUS-HT-Yd6" id="mBa-pE-rJJ"/>
+                        <outlet property="kalDataSource" destination="wj2-2r-p2o" id="0Ad-9p-PH9"/>
+                    </connections>
                 </viewController>
+                <customObject id="wj2-2r-p2o" customClass="SimpleKalDataSource"/>
             </objects>
             <point key="canvasLocation" x="1600" y="-561"/>
         </scene>
@@ -256,12 +261,21 @@
                             <textInputTraits key="textInputTraits"/>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Cdg-ei-zgX">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="B8G-ad-PSE" style="IBUITableViewCellStyleDefault" id="pxg-xr-P1k">
                                 <rect key="frame" x="0.0" y="66" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="B8G-ad-PSE">
+                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                             </tableViewCell>
@@ -557,7 +571,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <connections>
-                                            <segue destination="DQD-wn-edD" kind="push" identifier="airportSearch" id="Twy-Mo-mzg"/>
+                                            <segue destination="DQD-wn-edD" kind="push" identifier="fromAirportSearch" id="Twy-Mo-mzg"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="wYg-Qn-jno">
@@ -584,7 +598,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <connections>
-                                            <segue destination="DQD-wn-edD" kind="push" identifier="airportSearch" id="Ljb-F2-yNn"/>
+                                            <segue destination="DQD-wn-edD" kind="push" identifier="toAirportSearch" id="Ljb-F2-yNn"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="QdE-fg-02M">
@@ -669,12 +683,19 @@
         </class>
         <class className="DateDepartOrArrive" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DateDepartOrArrive.h"/>
+            <relationships>
+                <relationship kind="outlet" name="kal" candidateClass="KalView"/>
+                <relationship kind="outlet" name="kalDataSource" candidateClass="SimpleKalDataSource"/>
+            </relationships>
         </class>
         <class className="FlightSearchCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FlightSearchCell.h"/>
         </class>
         <class className="FlightSearchMethod" superclassName="UITabBarController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FlightSearchMethod.h"/>
+        </class>
+        <class className="KalView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/KalView.h"/>
         </class>
         <class className="NearbyAirports" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NearbyAirports.h"/>
@@ -688,6 +709,9 @@
         <class className="SearchResults" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchResults.h"/>
         </class>
+        <class className="SimpleKalDataSource" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SimpleKalDataSource.h"/>
+        </class>
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
         </class>
@@ -700,7 +724,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="GYu-WJ-4ep"/>
         <segue reference="yEO-Fa-RRJ"/>
-        <segue reference="uad-KD-ll2"/>
+        <segue reference="pPP-gH-uKa"/>
         <segue reference="Ljb-F2-yNn"/>
     </inferredMetricsTieBreakers>
 </document>

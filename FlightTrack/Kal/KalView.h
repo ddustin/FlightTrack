@@ -51,7 +51,12 @@
 @property (nonatomic, readonly) UITableView *tableView;
 @property (nonatomic, readonly) KalDate *selectedDate;
 
+@property (nonatomic, retain) KalLogic *logic;
+
 - (id)initWithFrame:(CGRect)frame delegate:(id<KalViewDelegate>)delegate logic:(KalLogic *)logic;
+
+
+
 - (BOOL)isSliding;
 - (void)selectDate:(KalDate *)date;
 - (void)markTilesForDates:(NSArray *)dates;
