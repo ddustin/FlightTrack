@@ -54,6 +54,14 @@
     return selectedDate;
 }
 
+- (void)setSelectedDate:(NSDate *)value {
+    
+    [value retain];
+    [selectedDate release];
+    
+    selectedDate = value;
+}
+
 - (void)viewDidLoad {
     
     [super viewDidLoad];
@@ -80,9 +88,7 @@
     
     self.dateSearchRelation = self.departOrArriveSegment.selectedSegmentIndex;
     
-    
     [self.kal selectDate:[KalDate dateFromNSDate:self.selectedDate]];
-    
 }
 
 - (void)showPreviousMonth

@@ -55,7 +55,7 @@ static NSString *kSlideAnimationId = @"KalSwitchMonths";
     [self addSubview:backMonthView];
     [self addSubview:frontMonthView];
 
-    [self jumpToSelectedMonth];
+    [self slide:SLIDE_NONE selectFirstTile:NO];
   }
   return self;
 }
@@ -190,7 +190,7 @@ static NSString *kSlideAnimationId = @"KalSwitchMonths";
  [UIView setAnimationsEnabled:YES];
 }
 
-- (void)slide:(int)direction
+- (void)slide:(int)direction selectFirstTile:(BOOL)selectFirstTile
 {
   transitioning = YES;
   
@@ -208,7 +208,13 @@ static NSString *kSlideAnimationId = @"KalSwitchMonths";
   
   [self swapMonthsAndSlide:direction keepOneRow:keepOneRow];
   
-  self.selectedTile = [frontMonthView firstTileOfMonth];
+  if(selectFirstTile)
+    self.selectedTile = [frontMonthView firstTileOfMonth];
+}
+
+- (void)slide:(int)direction {
+    
+    [self slide:direction selectFirstTile:YES];
 }
 
 - (void)slideUp { [self slide:SLIDE_UP]; }
