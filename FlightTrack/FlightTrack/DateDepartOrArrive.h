@@ -14,7 +14,18 @@ enum DateSearchRelation {
     DateSearchRelationArrive
 };
 
+@class DateDepartOrArrive;
+
+@protocol DateDepartOrArriveDelegate <NSObject>
+
+- (void)dateDepartOrArriveCanceled:(DateDepartOrArrive*)instance;
+- (void)dateDepartOrArriveDone:(DateDepartOrArrive*)instance;
+
+@end
+
 @interface DateDepartOrArrive : UIViewController<KalViewDelegate>
+
+@property (nonatomic, assign) id<DateDepartOrArriveDelegate> delegate;
 
 /// Defaults to now.
 @property (nonatomic, retain) NSDate *selectedDate;

@@ -26,6 +26,7 @@
 @synthesize departOrArriveSegment;
 @synthesize selectedDate;
 @synthesize dateSearchRelation;
+@synthesize delegate;
 
 - (void)dealloc {
     [kal release];
@@ -33,6 +34,16 @@
     self.selectedDate = nil;
     [departOrArriveSegment release];
     [super dealloc];
+}
+
+- (IBAction)cancel:(id)sender {
+    
+    [self.delegate dateDepartOrArriveCanceled:self];
+}
+
+- (IBAction)done:(id)sender {
+    
+    [self.delegate dateDepartOrArriveDone:self];
 }
 
 - (NSDate*)selectedDate {
@@ -54,12 +65,24 @@
     
     [self.kal selectDate:[KalDate dateFromNSDate:self.selectedDate]];
     
+    [self.kalDataSource presentingDatesFrom:self.kal.logic.fromDate
+                                         to:self.kal.logic.toDate delegate:nil];
+    
+    [self.kal selectDate:[KalDate dateFromNSDate:self.selectedDate]];
+    
     self.departOrArriveSegment.selectedSegmentIndex = self.dateSearchRelation;
+    
+    [self.kal selectDate:[KalDate dateFromNSDate:self.selectedDate]];
+    
 }
 
 - (IBAction)departOrArriveChange:(id)sender {
     
     self.dateSearchRelation = self.departOrArriveSegment.selectedSegmentIndex;
+    
+    
+    [self.kal selectDate:[KalDate dateFromNSDate:self.selectedDate]];
+    
 }
 
 - (void)showPreviousMonth
@@ -98,7 +121,7 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
+    return interfaceOrientation == UIInterfaceOrientationPortrait;
 }
 
 - (void)viewDidUnload {

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DateDepartOrArrive.h"
 
-@interface SearchByRoute : UITableViewController
+@interface SearchByRoute : UITableViewController<DateDepartOrArriveDelegate>
 
 @end
