@@ -67,6 +67,9 @@
         return [self pushNode:newName attributes:attributes to:object];
     }
     
+    while([ptr isKindOfClass:NSArray.class])
+        ptr = [(id)ptr lastObject];
+    
     NSMutableArray *array = [ptr objectForKey:newName];
     
     if(!array) {
