@@ -16,8 +16,8 @@
 @end
 
 @implementation AirlineSearch
-
 @synthesize airlines;
+@synthesize delegate;
 
 - (void)dealloc {
     
@@ -49,6 +49,11 @@
     }
 }
 
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    
+    [searchBar resignFirstResponder];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     return self.airlines.count;
@@ -64,6 +69,11 @@
     cell.textLabel.text = [airlineInfo objectForKey:@"Name"];
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [self.delegate airlineSearchComplete:self result:[self.airlines objectAtIndex:indexPath.row]];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

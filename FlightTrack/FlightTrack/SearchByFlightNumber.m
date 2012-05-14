@@ -106,7 +106,7 @@
                     
                     NSString *airline = [airlineInfo objectForKey:@"AirlineCode"];
                     
-                    if([airline.lowercaseString isEqual:sender.text.lowercaseString]) {
+                    if([sender.text.lowercaseString rangeOfString:airline.lowercaseString].location != NSNotFound) {
                         
                         if(matchingAirline) {
                             
@@ -144,6 +144,13 @@
     [self updateViews];
 }
 
+- (void)airlineSearchComplete:(AirlineSearch *)instance result:(NSDictionary *)airline {
+    
+    self.airlineText.text = [airline objectForKey:@"AirlineCode"];
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -177,8 +184,9 @@
         controller.dateSearchRelation = self.departOrArrive;
     }
     
-    if([segue.identifier isEqual:@"searchResults"]) {
+    if([segue.identifier isEqual:@"airlineSearch"]) {
         
+        [segue.destinationViewController setDelegate:self];
     }
 }
 

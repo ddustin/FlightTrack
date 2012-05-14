@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@class AirlineSearch;
+
+@protocol AirlineSearchDelegate <NSObject>
+
+- (void)airlineSearchComplete:(AirlineSearch*)instance result:(NSDictionary*)airline;
+
+@end
+
 @interface AirlineSearch : UITableViewController<UISearchBarDelegate>
+
+@property (nonatomic, assign) id<AirlineSearchDelegate> delegate;
 
 @end
