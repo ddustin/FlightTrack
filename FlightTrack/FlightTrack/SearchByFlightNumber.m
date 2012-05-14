@@ -7,6 +7,7 @@
 //
 
 #import "SearchByFlightNumber.h"
+#import "FlightStats.h"
 
 @interface SearchByFlightNumber ()
 
@@ -49,11 +50,6 @@
     [self.parentViewController dismissModalViewControllerAnimated:YES];
 }
 
-- (void)dateDepartOrArriveCanceled:(DateDepartOrArrive *)instance {
-    
-    [self dismissModalViewControllerAnimated:YES];
-}
-
 - (void)updateViews {
     
     if(self.departOrArrive == DateSearchRelationDepart)
@@ -71,6 +67,71 @@
         
         [fmt release];
     }
+}
+
+- (IBAction)flightNumberChanged:(UITextField*)sender {
+    
+    [FlightStats airlineQuery:sender.text onComplete:^(NSArray *airlines) {
+        
+        NSString *matchingAirline = nil;
+        
+        if(airlines.count == 1) {
+            
+            matchingAirline = [airlines.lastObject objectForKey:@"AirlineCode"];
+        }
+        else {
+            
+            BOOL tooManyMatches = NO;
+            
+            for(NSDictionary *airlineInfo in airlines) {
+                
+                NSString *airline = [airlineInfo objectForKey:@"AirlineCode"];
+                
+                if([airline.lowercaseString isEqual:sender.text.lowercaseString]) {
+                    
+                    if(matchingAirline) {
+                        
+                        matchingAirline = nil;
+                        tooManyMatches = YES;
+                        break;
+                    }
+                    
+                    matchingAirline = airline;
+                }
+            }
+            
+            if(!tooManyMatches) {
+                
+                for(NSDictionary *airlineInfo in airlines) {
+                    
+                    NSString *airline = [airlineInfo objectForKey:@"AirlineCode"];
+                    
+                    if([airline.lowercaseString isEqual:sender.text.lowercaseString]) {
+                        
+                        if(matchingAirline) {
+                            
+                            matchingAirline = nil;
+                            tooManyMatches = YES;
+                            break;
+                        }
+                        
+                        matchingAirline = airline;
+                    }
+                }
+            }
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if(matchingAirline)
+                self.airlineText.text = matchingAirline;
+        });
+    }];
+}
+
+- (void)dateDepartOrArriveCanceled:(DateDepartOrArrive *)instance {
+    
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 - (void)dateDepartOrArriveDone:(DateDepartOrArrive *)instance {
@@ -114,6 +175,10 @@
         
         controller.selectedDate = self.searchDate;
         controller.dateSearchRelation = self.departOrArrive;
+    }
+    
+    if([segue.identifier isEqual:@"searchResults"]) {
+        
     }
 }
 

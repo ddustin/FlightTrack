@@ -35,6 +35,9 @@
 		581A03D9155F1C07009872B3 /* KalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 581A03CD155F1B56009872B3 /* KalViewController.m */; };
 		581A03DA155F1C07009872B3 /* NSDateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 581A03CF155F1B56009872B3 /* NSDateAdditions.m */; };
 		581A03DB155F1C07009872B3 /* UIViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 581A03D1155F1B56009872B3 /* UIViewAdditions.m */; };
+		581A03FB1560856E009872B3 /* FlightStats.m in Sources */ = {isa = PBXBuildFile; fileRef = 581A03FA1560856E009872B3 /* FlightStats.m */; };
+		581A03FF15608865009872B3 /* XmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 581A03FD156086AE009872B3 /* XmlParser.m */; };
+		581A040315608B12009872B3 /* HttpBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 581A040115608987009872B3 /* HttpBody.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,6 +95,12 @@
 		581A03CF155F1B56009872B3 /* NSDateAdditions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSDateAdditions.m; sourceTree = "<group>"; };
 		581A03D0155F1B56009872B3 /* UIViewAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIViewAdditions.h; sourceTree = "<group>"; };
 		581A03D1155F1B56009872B3 /* UIViewAdditions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIViewAdditions.m; sourceTree = "<group>"; };
+		581A03F91560856E009872B3 /* FlightStats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightStats.h; sourceTree = "<group>"; };
+		581A03FA1560856E009872B3 /* FlightStats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightStats.m; sourceTree = "<group>"; };
+		581A03FC156086AE009872B3 /* XmlParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XmlParser.h; sourceTree = "<group>"; };
+		581A03FD156086AE009872B3 /* XmlParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XmlParser.m; sourceTree = "<group>"; };
+		581A040015608987009872B3 /* HttpBody.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HttpBody.h; sourceTree = "<group>"; };
+		581A040115608987009872B3 /* HttpBody.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HttpBody.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				581A0327155EF723009872B3 /* MainStoryboard.storyboard */,
+				581A03EB156083B8009872B3 /* FlightStats */,
 				581A031B155EF723009872B3 /* FlightTrack */,
 				581A038A155F1927009872B3 /* Kal */,
 				581A0314155EF723009872B3 /* Frameworks */,
@@ -152,6 +162,8 @@
 				581A0358155F0A1A009872B3 /* FlightSearchMethod */,
 				581A035A155F0B9F009872B3 /* ViewController */,
 				581A031C155EF723009872B3 /* Supporting Files */,
+				581A04021560898D009872B3 /* HttpBody */,
+				581A03FE156086B3009872B3 /* XmlParser */,
 			);
 			path = FlightTrack;
 			sourceTree = "<group>";
@@ -296,6 +308,42 @@
 			path = Kal;
 			sourceTree = "<group>";
 		};
+		581A03EB156083B8009872B3 /* FlightStats */ = {
+			isa = PBXGroup;
+			children = (
+				581A03F815608564009872B3 /* FlightStats */,
+			);
+			name = FlightStats;
+			path = FlightTrack;
+			sourceTree = "<group>";
+		};
+		581A03F815608564009872B3 /* FlightStats */ = {
+			isa = PBXGroup;
+			children = (
+				581A03F91560856E009872B3 /* FlightStats.h */,
+				581A03FA1560856E009872B3 /* FlightStats.m */,
+			);
+			name = FlightStats;
+			sourceTree = "<group>";
+		};
+		581A03FE156086B3009872B3 /* XmlParser */ = {
+			isa = PBXGroup;
+			children = (
+				581A03FC156086AE009872B3 /* XmlParser.h */,
+				581A03FD156086AE009872B3 /* XmlParser.m */,
+			);
+			name = XmlParser;
+			sourceTree = "<group>";
+		};
+		581A04021560898D009872B3 /* HttpBody */ = {
+			isa = PBXGroup;
+			children = (
+				581A040015608987009872B3 /* HttpBody.h */,
+				581A040115608987009872B3 /* HttpBody.m */,
+			);
+			name = HttpBody;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -381,6 +429,9 @@
 				581A03D9155F1C07009872B3 /* KalViewController.m in Sources */,
 				581A03DA155F1C07009872B3 /* NSDateAdditions.m in Sources */,
 				581A03DB155F1C07009872B3 /* UIViewAdditions.m in Sources */,
+				581A03FB1560856E009872B3 /* FlightStats.m in Sources */,
+				581A03FF15608865009872B3 /* XmlParser.m in Sources */,
+				581A040315608B12009872B3 /* HttpBody.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
