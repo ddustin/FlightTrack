@@ -157,19 +157,9 @@
 		581A031B155EF723009872B3 /* FlightTrack */ = {
 			isa = PBXGroup;
 			children = (
-				581A0380155F1585009872B3 /* FlightSearchCell */,
-				581A037C155F14A7009872B3 /* NearbyAirports */,
-				581A0378155F1366009872B3 /* SearchResults */,
-				581A036B155F1179009872B3 /* AirlineSearch */,
-				581A0367155F1162009872B3 /* AirportSearch */,
-				581A0363155F0DD3009872B3 /* DateDepartOrArrive */,
-				581A035F155F0BE7009872B3 /* SearchByRoute */,
-				581A035B155F0BC5009872B3 /* SearchByFlightNumber */,
-				581A0359155F0B98009872B3 /* AppDelegate */,
-				581A0358155F0A1A009872B3 /* FlightSearchMethod */,
-				581A035A155F0B9F009872B3 /* ViewController */,
-				581A04021560898D009872B3 /* HttpBody */,
-				581A03FE156086B3009872B3 /* XmlParser */,
+				581A040A1561B645009872B3 /* ProgramEntry */,
+				581A04091561B633009872B3 /* UniversalTools */,
+				581A04081561B5FA009872B3 /* FlightSearchSetupUI */,
 			);
 			path = FlightTrack;
 			sourceTree = "<group>";
@@ -350,6 +340,40 @@
 				581A040115608987009872B3 /* HttpBody.m */,
 			);
 			name = HttpBody;
+			sourceTree = "<group>";
+		};
+		581A04081561B5FA009872B3 /* FlightSearchSetupUI */ = {
+			isa = PBXGroup;
+			children = (
+				581A0380155F1585009872B3 /* FlightSearchCell */,
+				581A037C155F14A7009872B3 /* NearbyAirports */,
+				581A0378155F1366009872B3 /* SearchResults */,
+				581A036B155F1179009872B3 /* AirlineSearch */,
+				581A0367155F1162009872B3 /* AirportSearch */,
+				581A0363155F0DD3009872B3 /* DateDepartOrArrive */,
+				581A035F155F0BE7009872B3 /* SearchByRoute */,
+				581A035B155F0BC5009872B3 /* SearchByFlightNumber */,
+				581A0358155F0A1A009872B3 /* FlightSearchMethod */,
+			);
+			name = FlightSearchSetupUI;
+			sourceTree = "<group>";
+		};
+		581A04091561B633009872B3 /* UniversalTools */ = {
+			isa = PBXGroup;
+			children = (
+				581A04021560898D009872B3 /* HttpBody */,
+				581A03FE156086B3009872B3 /* XmlParser */,
+			);
+			name = UniversalTools;
+			sourceTree = "<group>";
+		};
+		581A040A1561B645009872B3 /* ProgramEntry */ = {
+			isa = PBXGroup;
+			children = (
+				581A0359155F0B98009872B3 /* AppDelegate */,
+				581A035A155F0B9F009872B3 /* ViewController */,
+			);
+			name = ProgramEntry;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
