@@ -14,4 +14,6 @@
 /// passed to 'block'.
 + (void)airlineQuery:(NSString*)query onComplete:(void(^)(NSArray *airlines))block;
 
++ (void)airportQuery:(NSString*)query onComplete:(void(^)(NSArray *airports))block;
+
 @end

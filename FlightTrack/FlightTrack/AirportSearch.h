@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+//@class AirportSearch;
+//
+//@protocol AirportSearchDelegate <NSObject>
+//
+//- (void)airportSearch:(AirportSearch*)instance completed:(NSS
+//
+//@end
+
 @interface AirportSearch : UITableViewController
 
 @end

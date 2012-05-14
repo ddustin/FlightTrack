@@ -40,6 +40,16 @@
         
         [segue.destinationViewController setDelegate:self];
     }
+    
+    if([segue.identifier isEqual:@"fromAirportSearch"]) {
+        
+        [segue.destinationViewController setDelegate:self];
+    }
+    
+    if([segue.identifier isEqual:@"toAirportSearch"]) {
+        
+        [segue.destinationViewController setDelegate:self];
+    }
 }
 
 @end
