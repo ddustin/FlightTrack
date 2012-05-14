@@ -20,6 +20,8 @@
 
 @property (nonatomic, assign) enum DateSearchRelation departOrArrive;
 
+- (void)updateViews;
+
 @end
 
 @implementation SearchByFlightNumber
@@ -100,7 +102,7 @@
                 }
             }
             
-            if(!tooManyMatches) {
+            if(!tooManyMatches && !matchingAirline) {
                 
                 for(NSDictionary *airlineInfo in airlines) {
                     
@@ -108,14 +110,8 @@
                     
                     if([sender.text.lowercaseString rangeOfString:airline.lowercaseString].location != NSNotFound) {
                         
-                        if(matchingAirline) {
-                            
-                            matchingAirline = nil;
-                            tooManyMatches = YES;
-                            break;
-                        }
-                        
                         matchingAirline = airline;
+                        break;
                     }
                 }
             }
@@ -154,6 +150,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    if(!self.searchDate)
+        self.searchDate = [NSDate date];
     
     [self updateViews];
 }

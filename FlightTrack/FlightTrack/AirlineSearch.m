@@ -28,22 +28,19 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     
+    static int searchNum = 0;
+    
+    int thisSearch = ++searchNum;
+    
     if(searchText.length) {
-        
-        static int searchNum = 0;
-        
-        int thisSearch = ++searchNum;
         
         [FlightStats airlineQuery:searchText onComplete:^(NSArray *value) {
             
             if(thisSearch == searchNum) {
                 
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    
-                    self.airlines = value;
-                    
-                    [self.tableView reloadData];
-                });
+                self.airlines = value;
+                
+                [self.tableView reloadData];
             }
         }];
     }

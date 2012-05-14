@@ -16,4 +16,6 @@
 
 + (void)airportQuery:(NSString*)query onComplete:(void(^)(NSArray *airports))block;
 
++ (void)nearbyAirportsIncludingMinor:(BOOL)includeMinor OnComplete:(void(^)(NSArray *airports))block;
+
 @end

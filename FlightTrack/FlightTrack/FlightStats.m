@@ -9,6 +9,7 @@
 #import "FlightStats.h"
 #import "XmlParser.h"
 #import "HttpBody.h"
+#import <CoreLocation/CoreLocation.h>
 
 @implementation FlightStats
 
@@ -72,7 +73,10 @@
             
             if([parser parseData:data]) {
                 
-                block(parser);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    block(parser);
+                });
             }
             else {
                 
@@ -127,12 +131,117 @@
     
     [dict setObject:query forKey:@"airportGetAirportsInfo.specificationMatching.matchString"];
     
+    [dict setObject:@"true" forKey:@"airportGetAirportsInfo.airportGetAirportsRequestedData.airportDetails"];
+    
     [self executeService:@"AirportGetAirportsService" withParams:dict onComplete:^(XmlParser *result) {
         
-        block([self putInArrayIfNotArray:queryXmlResult(result,
-                                                        @"AirportGetAirportsResponse",
-                                                        @"Airport")]);
+        NSArray *airports = [self putInArrayIfNotArray:queryXmlResult(result,
+                                                                      @"AirportGetAirportsResponse",
+                                                                      @"AirportDetail")];
+        
+        NSMutableArray *sortedAirports = [NSMutableArray array];
+        
+        for(NSDictionary *airport in airports)
+            if([[airport objectForKey:@"IsMajorAirport"] isEqual:@"true"])
+                [sortedAirports addObject:airport];
+        
+        for(NSDictionary *airport in airports)
+            if(![[airport objectForKey:@"IsMajorAirport"] isEqual:@"true"])
+                [sortedAirports addObject:airport];
+        
+        block(sortedAirports);
     }];
+}
+
+static void (^nearbyAirportsOnComplete)(NSArray *) = nil;
+static BOOL includeMinor = NO;
+
++ (void)gotLocation:(CLLocation*)location {
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    
+    [dict setObject:[NSString stringWithFormat:@"%lf", location.coordinate.latitude]
+             forKey:@"airportGetAirportsInfo.specificationRegion.latitude"];
+    
+    [dict setObject:[NSString stringWithFormat:@"%lf", location.coordinate.longitude]
+             forKey:@"airportGetAirportsInfo.specificationRegion.longitude"];
+    
+    if(!includeMinor)
+        [dict setObject:@"true" forKey:@"airportGetAirportsInfo.criterionAirports.majorAirportsOnly"];
+    
+    [dict setObject:@"true" forKey:@"airportGetAirportsInfo.airportGetAirportsRequestedData.airportDetails"];
+    
+    [self executeService:@"AirportGetAirportsService" withParams:dict onComplete:^(XmlParser *result) {
+        
+        NSMutableArray *airports =
+        [[[self putInArrayIfNotArray:queryXmlResult(result,
+                                                    @"AirportGetAirportsResponse",
+                                                    @"AirportDetail")] mutableCopy] autorelease];
+        
+        int index = 0;
+        
+        for(NSDictionary *distanceInfo in queryXmlResult(result,
+                                                         @"AirportGetAirportsResponse",
+                                                         @"DistanceFromOrigin")) {
+            
+            if(index >= airports.count)
+                break;
+            
+            NSMutableDictionary *dict = [[[airports objectAtIndex:index] mutableCopy] autorelease];
+            
+            [dict addEntriesFromDictionary:distanceInfo];
+            
+            [airports replaceObjectAtIndex:index withObject:dict];
+            
+            index++;
+        }
+        
+        NSMutableArray *sortedAirports = [NSMutableArray array];
+        
+        for(NSDictionary *airport in airports)
+            if([[airport objectForKey:@"IsMajorAirport"] isEqual:@"true"])
+                [sortedAirports addObject:airport];
+        
+        for(NSDictionary *airport in airports)
+            if(![[airport objectForKey:@"IsMajorAirport"] isEqual:@"true"])
+                [sortedAirports addObject:airport];
+        
+        if(nearbyAirportsOnComplete)
+            nearbyAirportsOnComplete(sortedAirports);
+        
+        [nearbyAirportsOnComplete release];
+        nearbyAirportsOnComplete = nil;
+    }];
+}
+
++ (void)locationManager:(CLLocationManager *)manager
+    didUpdateToLocation:(CLLocation *)newLocation
+           fromLocation:(CLLocation *)oldLocation {
+    
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    [(id)self performSelector:@selector(gotLocation:) withObject:newLocation afterDelay:0.15];
+    
+    [manager stopUpdatingLocation];
+}
+
++ (void)nearbyAirportsIncludingMinor:(BOOL)includeMinorValue OnComplete:(void (^)(NSArray *))block {
+    
+    static CLLocationManager *locationManager = nil;
+    
+    [nearbyAirportsOnComplete release];
+    nearbyAirportsOnComplete = [block copy];
+    includeMinor = includeMinorValue;
+    
+    if(!locationManager) {
+        
+        locationManager = [CLLocationManager new];
+        
+        locationManager.delegate = (id)self;
+        locationManager.distanceFilter = kCLDistanceFilterNone;
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+    }
+    
+    [locationManager startUpdatingLocation];
 }
 
 @end

@@ -7,15 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NearbyAirports.h"
 
-//@class AirportSearch;
-//
-//@protocol AirportSearchDelegate <NSObject>
-//
-//- (void)airportSearch:(AirportSearch*)instance completed:(NSS
-//
-//@end
+@class AirportSearch;
 
-@interface AirportSearch : UITableViewController
+@protocol AirportSearchDelegate <NSObject>
+
+- (void)airportSearch:(AirportSearch*)instance completed:(NSDictionary*)airport;
+
+@end
+
+@interface AirportSearch : UITableViewController<NearbyAirportsDelegate, UISearchBarDelegate>
+
+@property (nonatomic, assign) id<AirportSearchDelegate> delegate;
 
 @end
