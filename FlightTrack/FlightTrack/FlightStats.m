@@ -311,8 +311,12 @@ static BOOL includeMinor = NO;
     if(query.departureAirport)
         [dict setObject:query.departureAirport forKey:@"info.specificationDepartures[0].airport.airportCode"];
     
-    if(query.flightNumber)
-        [dict setObject:query.flightNumber forKey:@"specificationFlights[0].flightNumber"];
+    if(query.flightNumber) {
+        
+        [dict setObject:[query.flightNumber stringByTrimmingCharactersInSet:
+                         [NSCharacterSet.decimalDigitCharacterSet invertedSet]]
+                 forKey:@"info.specificationFlights[0].flightNumber"];
+    }
     
     if(query.arrivalAirport)
         [dict setObject:query.arrivalAirport forKey:@"info.specificationArrivals[0].airport.airportCode"];

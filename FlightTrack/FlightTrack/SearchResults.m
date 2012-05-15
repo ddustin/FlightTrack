@@ -13,11 +13,14 @@
 
 @property (nonatomic, retain) NSArray *flights;
 
+@property (nonatomic, assign) BOOL searching;
+
 @end
 
 @implementation SearchResults
 @synthesize query;
 @synthesize flights;
+@synthesize searching;
 
 - (void)dealloc {
     
@@ -27,13 +30,28 @@
     [super dealloc];
 }
 
+- (UITableViewRowAnimation)idealRowAnimation {
+    
+    NSString *reqSysVer = @"5.0";
+    NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
+    
+    if ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending)
+        return UITableViewRowAnimationAutomatic;
+    
+    return UITableViewRowAnimationFade;
+}
+
 - (void)load {
+    
+    self.searching = YES;
     
     [FlightStats flightSearch:self.query onComplete:^(NSArray *value) {
         
+        self.searching = NO;
         self.flights = value;
         
-        [self.tableView reloadData];
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0]
+                      withRowAnimation:self.idealRowAnimation];
     }];
 }
 
@@ -46,6 +64,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    if(self.searching || !self.flights.count)
+        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    
     FlightSearchCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FlightSearchCell"];
     
     return cell.frame.size.height;
@@ -53,10 +74,19 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
+    if(self.searching || !self.flights.count)
+        return 1;
+    
     return self.flights.count;
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if(self.searching)
+        return [tableView dequeueReusableCellWithIdentifier:@"LoadingCell"];
+    
+    if(!self.flights.count)
+        return [tableView dequeueReusableCellWithIdentifier:@"NoResultsCell"];
     
     FlightSearchCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FlightSearchCell"];
     

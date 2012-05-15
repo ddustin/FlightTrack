@@ -63,27 +63,35 @@
     
     if(searchText.length) {
         
-        [FlightStats airportQuery:searchText onComplete:^(NSArray *value) {
+        double delayInSeconds = 0.33;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             
-            if(thisSearch == searchNum) {
+            if(thisSearch != searchNum)
+                return;
+            
+            [FlightStats airportQuery:searchText onComplete:^(NSArray *value) {
                 
-                NSMutableArray *majorArray = [NSMutableArray array];
-                NSMutableArray *minorArray = [NSMutableArray array];
-                
-                for(NSDictionary *airport in value) {
+                if(thisSearch == searchNum) {
                     
-                    if([[airport objectForKey:@"IsMajorAirport"] isEqual:@"true"])
-                        [majorArray addObject:airport];
-                    else
-                        [minorArray addObject:airport];
+                    NSMutableArray *majorArray = [NSMutableArray array];
+                    NSMutableArray *minorArray = [NSMutableArray array];
+                    
+                    for(NSDictionary *airport in value) {
+                        
+                        if([[airport objectForKey:@"IsMajorAirport"] isEqual:@"true"])
+                            [majorArray addObject:airport];
+                        else
+                            [minorArray addObject:airport];
+                    }
+                    
+                    self.minorAirports = minorArray;
+                    self.majorAirports = majorArray;
+                    
+                    [self.tableView reloadData];
                 }
-                
-                self.minorAirports = minorArray;
-                self.majorAirports = majorArray;
-                
-                [self.tableView reloadData];
-            }
-        }];
+            }];
+        });
     }
 }
 

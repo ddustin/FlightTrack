@@ -87,54 +87,80 @@
 
 - (IBAction)flightNumberChanged:(UITextField*)sender {
     
-    [FlightStats airlineQuery:sender.text onComplete:^(NSArray *airlines) {
+    NSString *searchText = sender.text;
+    
+    self.flightNumber = sender.text;
+    
+    // Perform query for airline are a 1/3rd second delay and no text updates
+    
+    static int searchNum = 0;
+    
+    int thisSearch = ++searchNum;
+    
+    if(searchText.length) {
         
-        NSDictionary *matchingAirline = nil;
-        
-        if(airlines.count == 1) {
+        double delayInSeconds = 0.33;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             
-            matchingAirline = airlines.lastObject;
-        }
-        else {
+            if(thisSearch != searchNum)
+                return;
             
-            BOOL tooManyMatches = NO;
-            
-            for(NSDictionary *airlineInfo in airlines) {
+            [FlightStats airlineQuery:sender.text onComplete:^(NSArray *airlines) {
                 
-                NSString *airlineCode = [airlineInfo objectForKey:@"AirlineCode"];
+                NSDictionary *matchingAirline = nil;
                 
-                if([airlineCode.lowercaseString isEqual:sender.text.lowercaseString]) {
+                if(airlines.count == 1) {
                     
-                    if(matchingAirline) {
+                    matchingAirline = airlines.lastObject;
+                }
+                else {
+                    
+                    BOOL tooManyMatches = NO;
+                    
+                    for(NSDictionary *airlineInfo in airlines) {
                         
-                        matchingAirline = nil;
-                        tooManyMatches = YES;
-                        break;
+                        NSString *airlineCode = [airlineInfo objectForKey:@"AirlineCode"];
+                        
+                        if([airlineCode.lowercaseString isEqual:sender.text.lowercaseString]) {
+                            
+                            if(matchingAirline) {
+                                
+                                matchingAirline = nil;
+                                tooManyMatches = YES;
+                                break;
+                            }
+                            
+                            matchingAirline = airlineInfo;
+                        }
                     }
                     
-                    matchingAirline = airlineInfo;
-                }
-            }
-            
-            if(!tooManyMatches && !matchingAirline) {
-                
-                for(NSDictionary *airlineInfo in airlines) {
-                    
-                    NSString *airlineCode = [airlineInfo objectForKey:@"AirlineCode"];
-                    
-                    if([sender.text.lowercaseString rangeOfString:airlineCode.lowercaseString].location != NSNotFound) {
+                    if(!tooManyMatches && !matchingAirline) {
                         
-                        matchingAirline = airlineInfo;
-                        break;
+                        for(NSDictionary *airlineInfo in airlines) {
+                            
+                            NSString *airlineCode = [airlineInfo objectForKey:@"AirlineCode"];
+                            
+                            if([sender.text.lowercaseString rangeOfString:airlineCode.lowercaseString].location != NSNotFound) {
+                                
+                                matchingAirline = airlineInfo;
+                                break;
+                            }
+                        }
                     }
                 }
-            }
-        }
-        
-        self.airline = matchingAirline;
-        
-        [self updateViews];
-    }];
+                
+                if(matchingAirline) {
+                    
+                    self.airline = matchingAirline;
+                    
+                    self.airlineText.text = [NSString stringWithFormat:@"%@ - %@",
+                                             [self.airline objectForKey:@"AirlineCode"],
+                                             [self.airline objectForKey:@"Name"]];
+                }
+            }];
+        });
+    }
 }
 
 - (void)dateDepartOrArriveCanceled:(DateDepartOrArrive *)instance {

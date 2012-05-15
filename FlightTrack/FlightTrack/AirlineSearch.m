@@ -45,15 +45,23 @@
     
     if(searchText.length) {
         
-        [FlightStats airlineQuery:searchText onComplete:^(NSArray *value) {
+        double delayInSeconds = 0.33;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             
-            if(thisSearch == searchNum) {
+            if(thisSearch != searchNum)
+                return;
+            
+            [FlightStats airlineQuery:searchText onComplete:^(NSArray *value) {
                 
-                self.airlines = value;
-                
-                [self.tableView reloadData];
-            }
-        }];
+                if(thisSearch == searchNum) {
+                    
+                    self.airlines = value;
+                    
+                    [self.tableView reloadData];
+                }
+            }];
+        });
     }
 }
 
