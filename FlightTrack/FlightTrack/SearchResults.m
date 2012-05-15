@@ -46,7 +46,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    return 89;
+    FlightSearchCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FlightSearchCell"];
+    
+    return cell.frame.size.height;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
