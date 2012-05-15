@@ -44,9 +44,15 @@
     [self.searchBar becomeFirstResponder];
 }
 
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+- (void)searchBarSearchButtonClicked:(UISearchBar *)value {
     
-    [searchBar resignFirstResponder];
+    [value resignFirstResponder];
+    
+    if(self.majorAirports.count == 1 && self.minorAirports.count == 0)
+        [self.delegate airportSearch:self completed:self.majorAirports.lastObject];
+    
+    if(self.majorAirports.count == 0 && self.minorAirports.count == 1)
+        [self.delegate airportSearch:self completed:self.minorAirports.lastObject];
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {

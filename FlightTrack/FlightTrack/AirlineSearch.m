@@ -57,9 +57,12 @@
     }
 }
 
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+- (void)searchBarSearchButtonClicked:(UISearchBar *)value {
     
-    [searchBar resignFirstResponder];
+    [value resignFirstResponder];
+    
+    if(self.airlines.count == 1)
+        [self.delegate airlineSearchComplete:self result:self.airlines.lastObject];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
