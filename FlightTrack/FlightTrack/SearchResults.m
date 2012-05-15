@@ -74,19 +74,19 @@
      [origin objectForKey:@"AirportCode"], [destination objectForKey:@"AirportCode"]];
     
     NSDate *departureDate =
-    [FlightStats dateFromString:[flight objectForKey:@"EstimatedRunwayDepartureDate"]
+    [FlightStats dateFromString:[flight objectForKey:@"DepartureDate"]
                        timeZone:[flight objectForKey:@"DepartureAirportTimeZoneOffset"]];
     
     NSDate *arrivalDate =
-    [FlightStats dateFromString:[flight objectForKey:@"EstimatedRunwayArrivalDate"]
+    [FlightStats dateFromString:[flight objectForKey:@"ArrivalDate"]
                        timeZone:[flight objectForKey:@"ArrivalAirportTimeZoneOffset"]];
     
     NSDateFormatter *fmt = [[NSDateFormatter new] autorelease];
 	
-	[fmt setDateFormat:@"h:mma"];
+	[fmt setDateFormat:@"h:mm a"];
 	
-    cell.depatureLbl.text = [fmt stringFromDate:departureDate];
-    cell.arrivalLbl.text = [fmt stringFromDate:arrivalDate];
+    cell.depatureLbl.text = [fmt stringFromDate:departureDate].lowercaseString;
+    cell.arrivalLbl.text = [fmt stringFromDate:arrivalDate].lowercaseString;
     
     return cell;
 }
