@@ -13,17 +13,28 @@
 
 @property (nonatomic, retain) NSArray *airlines;
 
+@property (retain, nonatomic) IBOutlet UISearchBar *searchBar;
+
 @end
 
 @implementation AirlineSearch
 @synthesize airlines;
+@synthesize searchBar;
 @synthesize delegate;
 
 - (void)dealloc {
     
     self.airlines = nil;
     
+    [searchBar release];
     [super dealloc];
+}
+
+- (void)viewDidLoad {
+    
+    [super viewDidLoad];
+    
+    [self.searchBar becomeFirstResponder];
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
@@ -78,4 +89,8 @@
     return interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
 }
 
+- (void)viewDidUnload {
+    [self setSearchBar:nil];
+    [super viewDidUnload];
+}
 @end

@@ -346,8 +346,8 @@
 			isa = PBXGroup;
 			children = (
 				581A0380155F1585009872B3 /* FlightSearchCell */,
-				581A037C155F14A7009872B3 /* NearbyAirports */,
 				581A0378155F1366009872B3 /* SearchResults */,
+				581A037C155F14A7009872B3 /* NearbyAirports */,
 				581A036B155F1179009872B3 /* AirlineSearch */,
 				581A0367155F1162009872B3 /* AirportSearch */,
 				581A0363155F0DD3009872B3 /* DateDepartOrArrive */,

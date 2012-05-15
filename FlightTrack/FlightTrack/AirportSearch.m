@@ -17,12 +17,15 @@
 /// Keys are two letter country codes (NSString) and values are full country name (NSString).
 @property (nonatomic, retain) NSDictionary *countryCodes;
 
+@property (retain, nonatomic) IBOutlet UISearchBar *searchBar;
+
 @end
 
 @implementation AirportSearch
 @synthesize delegate;
 @synthesize majorAirports, minorAirports;
 @synthesize countryCodes;
+@synthesize searchBar;
 
 - (void)dealloc {
     
@@ -30,7 +33,15 @@
     self.minorAirports = nil;
     self.countryCodes = nil;
     
+    [searchBar release];
     [super dealloc];
+}
+
+- (void)viewDidLoad {
+    
+    [super viewDidLoad];
+    
+    [self.searchBar becomeFirstResponder];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
@@ -197,4 +208,8 @@
     }
 }
 
+- (void)viewDidUnload {
+    [self setSearchBar:nil];
+    [super viewDidUnload];
+}
 @end

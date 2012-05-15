@@ -8,6 +8,7 @@
 
 #import "SearchByFlightNumber.h"
 #import "FlightStats.h"
+#import "SearchResults.h"
 
 @interface SearchByFlightNumber ()
 
@@ -17,6 +18,8 @@
 @property (retain, nonatomic) IBOutlet UITextField *airlineText;
 
 @property (nonatomic, retain) NSDate *searchDate;
+@property (nonatomic, retain) NSString *flightNumber;
+@property (nonatomic, retain) NSDictionary *airline;
 
 @property (nonatomic, assign) enum DateSearchRelation departOrArrive;
 
@@ -29,11 +32,14 @@
 @synthesize dateText;
 @synthesize flightNumberText;
 @synthesize airlineText;
-@synthesize searchDate,departOrArrive;
+@synthesize searchDate, flightNumber, airline;
+@synthesize departOrArrive;
 
 - (void)dealloc {
     
     self.searchDate = nil;
+    self.flightNumber = nil;
+    self.airline = nil;
     
     [departsOrArrivesLbl release];
     [dateText release];
@@ -69,17 +75,25 @@
         
         [fmt release];
     }
+    
+    if(self.flightNumber)
+        self.flightNumberText.text = self.flightNumber;
+    
+    if(self.airline)
+        self.airlineText.text = [NSString stringWithFormat:@"%@ - %@",
+                                 [self.airline objectForKey:@"AirlineCode"],
+                                 [self.airline objectForKey:@"Name"]];
 }
 
 - (IBAction)flightNumberChanged:(UITextField*)sender {
     
     [FlightStats airlineQuery:sender.text onComplete:^(NSArray *airlines) {
         
-        NSString *matchingAirline = nil;
+        NSDictionary *matchingAirline = nil;
         
         if(airlines.count == 1) {
             
-            matchingAirline = [airlines.lastObject objectForKey:@"AirlineCode"];
+            matchingAirline = airlines.lastObject;
         }
         else {
             
@@ -87,9 +101,9 @@
             
             for(NSDictionary *airlineInfo in airlines) {
                 
-                NSString *airline = [airlineInfo objectForKey:@"AirlineCode"];
+                NSString *airlineCode = [airlineInfo objectForKey:@"AirlineCode"];
                 
-                if([airline.lowercaseString isEqual:sender.text.lowercaseString]) {
+                if([airlineCode.lowercaseString isEqual:sender.text.lowercaseString]) {
                     
                     if(matchingAirline) {
                         
@@ -98,7 +112,7 @@
                         break;
                     }
                     
-                    matchingAirline = airline;
+                    matchingAirline = airlineInfo;
                 }
             }
             
@@ -106,22 +120,20 @@
                 
                 for(NSDictionary *airlineInfo in airlines) {
                     
-                    NSString *airline = [airlineInfo objectForKey:@"AirlineCode"];
+                    NSString *airlineCode = [airlineInfo objectForKey:@"AirlineCode"];
                     
-                    if([sender.text.lowercaseString rangeOfString:airline.lowercaseString].location != NSNotFound) {
+                    if([sender.text.lowercaseString rangeOfString:airlineCode.lowercaseString].location != NSNotFound) {
                         
-                        matchingAirline = airline;
+                        matchingAirline = airlineInfo;
                         break;
                     }
                 }
             }
         }
         
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            if(matchingAirline)
-                self.airlineText.text = matchingAirline;
-        });
+        self.airline = matchingAirline;
+        
+        [self updateViews];
     }];
 }
 
@@ -140,11 +152,13 @@
     [self updateViews];
 }
 
-- (void)airlineSearchComplete:(AirlineSearch *)instance result:(NSDictionary *)airline {
+- (void)airlineSearchComplete:(AirlineSearch *)instance result:(NSDictionary *)value {
     
-    self.airlineText.text = [airline objectForKey:@"AirlineCode"];
+    self.airline = value;
     
     [self.navigationController popViewControllerAnimated:YES];
+    
+    [self updateViews];
 }
 
 - (void)viewDidLoad
@@ -186,6 +200,19 @@
     if([segue.identifier isEqual:@"airlineSearch"]) {
         
         [segue.destinationViewController setDelegate:self];
+    }
+    
+    if([segue.identifier isEqual:@"searchResults"]) {
+        
+        FlightSearchQuery *query = [[FlightSearchQuery new] autorelease];
+        
+        query.date = self.searchDate;
+        query.isArrivalDate = (self.departOrArrive == DateSearchRelationArrive);
+        
+        query.flightNumber = self.flightNumber;
+        query.airlineCode = [self.airline objectForKey:@"AirlineCode"];
+        
+        [segue.destinationViewController setQuery:query];
     }
 }
 

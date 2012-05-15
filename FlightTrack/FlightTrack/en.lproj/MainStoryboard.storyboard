@@ -327,6 +327,9 @@
                     <navigationItem key="navigationItem" title="Airline Search" id="yfF-8J-9uh">
                         <barButtonItem key="backBarButtonItem" title="Back" id="gZX-A2-olA"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="searchBar" destination="d5K-LE-LU4" id="WlM-XT-3iO"/>
+                    </connections>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="1575" y="71"/>
@@ -336,49 +339,57 @@
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EBA-Pd-txd" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="tJq-Be-bcW" customClass="SearchResults" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="103" sectionHeaderHeight="22" sectionFooterHeight="22" id="MD9-Qk-5mJ">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="MD9-Qk-5mJ">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FlightSearchCell" rowHeight="103" id="rT4-Tj-Qj2" customClass="FlightSearchCell">
-                                <rect key="frame" x="0.0" y="22" width="320" height="103"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FlightSearchCell" rowHeight="87" id="rT4-Tj-Qj2" customClass="FlightSearchCell">
+                                <rect key="frame" x="0.0" y="46" width="320" height="89"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="102"/>
+                                    <rect key="frame" x="10" y="1" width="280" height="86"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Airline + Flight Number" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="kM7-1K-JMz">
-                                            <rect key="frame" x="8" y="8" width="259" height="21"/>
+                                            <rect key="frame" x="8" y="7" width="259" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <size key="shadowOffset" width="-1" height="-1"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Arrival:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="o4V-jA-vwi">
-                                            <rect key="frame" x="8" y="37" width="81" height="21"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Origin and Destination" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="iWu-II-aBB">
+                                            <rect key="frame" x="186" y="34" width="89" height="19"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <size key="shadowOffset" width="-1" height="-1"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Departure:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="o4V-jA-vwi">
+                                            <rect key="frame" x="8" y="33" width="81" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="00:00 am" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="7zA-lS-0G5">
-                                            <rect key="frame" x="97" y="37" width="81" height="21"/>
+                                            <rect key="frame" x="97" y="33" width="81" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="00:00 am" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="l3h-Z7-4g3">
-                                            <rect key="frame" x="97" y="66" width="81" height="21"/>
+                                            <rect key="frame" x="97" y="59" width="81" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Departure:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="pqJ-xH-Lz6">
-                                            <rect key="frame" x="8" y="66" width="81" height="21"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Arrival:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="pqJ-xH-Lz6">
+                                            <rect key="frame" x="8" y="59" width="81" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -387,6 +398,12 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <connections>
+                                    <outlet property="airlineFlightLbl" destination="kM7-1K-JMz" id="oW6-xl-TvU"/>
+                                    <outlet property="arrivalLbl" destination="l3h-Z7-4g3" id="FgE-Cu-GQY"/>
+                                    <outlet property="depatureLbl" destination="7zA-lS-0G5" id="uDH-xK-ja7"/>
+                                    <outlet property="originDestinationLbl" destination="iWu-II-aBB" id="b87-pf-1kK"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -462,6 +479,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="searchBar" destination="mdb-km-5Yt" id="Cb5-LX-gpb"/>
+                    </connections>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="1594" y="658"/>
@@ -749,9 +769,15 @@
     <classes>
         <class className="AirlineSearch" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AirlineSearch.h"/>
+            <relationships>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+            </relationships>
         </class>
         <class className="AirportSearch" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AirportSearch.h"/>
+            <relationships>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+            </relationships>
         </class>
         <class className="DateDepartOrArrive" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DateDepartOrArrive.h"/>
@@ -763,6 +789,12 @@
         </class>
         <class className="FlightSearchCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FlightSearchCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="airlineFlightLbl" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="arrivalLbl" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="depatureLbl" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="originDestinationLbl" candidateClass="UILabel"/>
+            </relationships>
         </class>
         <class className="FlightSearchMethod" superclassName="UITabBarController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FlightSearchMethod.h"/>

@@ -23,6 +23,25 @@
     return queue;
 }
 
+static NSString* encodeToPercentEscapeString(NSString *string) {
+    
+	return [(NSString *)CFURLCreateStringByAddingPercentEscapes
+            (NULL,
+             (CFStringRef) string,
+             NULL,
+             (CFStringRef) @"!*'();:@&=+$,/?%#[]",
+             kCFStringEncodingUTF8) autorelease];
+}
+
+static NSString* decodeFromPercentEscapeString(NSString *string) {
+    
+	return [(NSString *)CFURLCreateStringByReplacingPercentEscapesUsingEncoding
+            (NULL,
+             (CFStringRef) string,
+             CFSTR(""),
+             kCFStringEncodingUTF8) autorelease];
+}
+
 + (void)executeService:(NSString*)service withParams:(NSDictionary*)paramsOrig
            onComplete:(void (^)(XmlParser *result))block {
     
@@ -54,7 +73,8 @@
                 if(index++)
                     [string appendString:@"&"];
                 
-                [string appendFormat:@"%@=%@", key, [params objectForKey:key]];
+                [string appendFormat:@"%@=%@", encodeToPercentEscapeString(key),
+                 encodeToPercentEscapeString([params objectForKey:key])];
             }
             
             request.HTTPBody = [string dataUsingEncoding:NSUTF8StringEncoding];
@@ -242,6 +262,98 @@ static BOOL includeMinor = NO;
     }
     
     [locationManager startUpdatingLocation];
+}
+
++ (NSString*)dateToDayStartString:(NSDate*)date addDays:(int)numDays {
+    
+    NSDateComponents *comps =
+    [NSCalendar.currentCalendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit
+                fromDate:date];
+    
+    comps.day += numDays;
+    
+    date = [NSCalendar.currentCalendar dateFromComponents:comps];
+    
+    NSDateFormatter *format = [[NSDateFormatter new] autorelease];
+    
+    [format setDateFormat:@"yyyy-MM-dd'T'HH:mm"];
+    
+    return [format stringFromDate:date];
+}
+
++ (void)flightSearch:(FlightSearchQuery*)query onComplete:(void(^)(NSArray *flights))block {
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    
+    if(!query.date)
+        query.date = [NSDate date];
+    
+    if(query.isArrivalDate) {
+        
+        [dict setObject:[self dateToDayStartString:query.date addDays:0]
+                 forKey:@"info.specificationDateRange.departureDateTimeMin"];
+        
+        [dict setObject:[self dateToDayStartString:query.date addDays:1]
+                 forKey:@"info.specificationDateRange.departureDateTimeMax"];
+    }
+    else {
+        
+        [dict setObject:[self dateToDayStartString:query.date addDays:0]
+                 forKey:@"info.specificationDateRange.arrivalDateTimeMin"];
+        
+        [dict setObject:[self dateToDayStartString:query.date addDays:1]
+                 forKey:@"info.specificationDateRange.arrivalDateTimeMax"];
+    }
+    
+    if(query.airlineCode)
+        [dict setObject:query.airlineCode forKey:@"info.specificationFlights[0].airline.airlineCode"];
+    
+    if(query.departureAirport)
+        [dict setObject:query.departureAirport forKey:@"info.specificationDepartures[0].airport.airportCode"];
+    
+    if(query.flightNumber)
+        [dict setObject:query.flightNumber forKey:@"specificationFlights[0].flightNumber"];
+    
+    if(query.arrivalAirport)
+        [dict setObject:query.arrivalAirport forKey:@"info.specificationArrivals[0].airport.airportCode"];
+    
+//    [dict setObject:@"true" forKey:@"info.specificationFlights[0].searchCodeshares"];
+//    [dict setObject:@"true" forKey:@"info.flightHistoryGetRecordsRequestedData.codeshares"];
+    
+    [self executeService:@"FlightHistoryGetRecordsService" withParams:dict onComplete:^(XmlParser *result) {
+        
+        block([self putInArrayIfNotArray:
+               queryXmlResult(result,
+                              @"FlightHistoryGetRecordsResponse",
+                              @"FlightHistory")]);
+    }];
+}
+
++ (NSDate*)dateFromString:(NSString*)string timeZone:(NSString*)timeZone {
+    
+    NSDateFormatter *format = [[NSDateFormatter new] autorelease];
+    
+    [format setTimeZone:[NSTimeZone timeZoneWithAbbreviation:timeZone]];
+    
+    [format setDateFormat:@"yyyy'-'MM'-'dd'T'H':'mm':'ss.mmm"];
+    
+    return [format dateFromString:string];
+}
+
+@end
+
+@implementation FlightSearchQuery
+@synthesize date, isArrivalDate, airlineCode, flightNumber, departureAirport, arrivalAirport;
+
+- (void)dealloc {
+    
+    self.date = nil;
+    self.airlineCode = nil;
+    self.flightNumber = nil;
+    self.departureAirport = nil;
+    self.arrivalAirport = nil;
+    
+    [super dealloc];
 }
 
 @end

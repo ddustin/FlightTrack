@@ -31,9 +31,4 @@
     return interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-    NSLog(@"prepare!");
-}
-
 @end

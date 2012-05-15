@@ -10,4 +10,9 @@
 
 @interface FlightSearchCell : UITableViewCell
 
+@property (nonatomic, assign) IBOutlet UILabel *airlineFlightLbl;
+@property (nonatomic, assign) IBOutlet UILabel *originDestinationLbl;
+@property (nonatomic, assign) IBOutlet UILabel *arrivalLbl;
+@property (nonatomic, assign) IBOutlet UILabel *depatureLbl;
+
 @end

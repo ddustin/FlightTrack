@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FlightStats.h"
 
 @interface SearchResults : UITableViewController
+
+@property (nonatomic, retain) FlightSearchQuery *query;
 
 @end

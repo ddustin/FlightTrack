@@ -7,6 +7,7 @@
 //
 
 #import "SearchByRoute.h"
+#import "SearchResults.h"
 
 @interface SearchByRoute ()
 
@@ -116,7 +117,9 @@
         self.toAirportLbl.text = [self.toAirport objectForKey:@"AirportCode"];
     
     if(self.airline)
-        self.airlineLbl.text = [self.airline objectForKey:@"AirlineCode"];
+        self.airlineLbl.text = [NSString stringWithFormat:@"%@ - %@",
+                                [self.airline objectForKey:@"AirlineCode"],
+                                [self.airline objectForKey:@"Name"]];
 }
 
 - (void)airportSearch:(AirportSearch *)instance completed:(NSDictionary *)airport {
@@ -189,6 +192,20 @@
         self.toAirportSearchController = segue.destinationViewController;
         
         [segue.destinationViewController setDelegate:self];
+    }
+    
+    if([segue.identifier isEqual:@"searchResults"]) {
+        
+        FlightSearchQuery *query = [[FlightSearchQuery new] autorelease];
+        
+        query.date = self.searchDate;
+        query.isArrivalDate = (self.departOrArrive == DateSearchRelationArrive);
+        
+        query.departureAirport = [self.fromAirport objectForKey:@"AirportCode"];
+        query.arrivalAirport = [self.toAirport objectForKey:@"AirportCode"];
+        query.airlineCode = [self.airline objectForKey:@"AirlineCode"];
+        
+        [segue.destinationViewController setQuery:query];
     }
 }
 
