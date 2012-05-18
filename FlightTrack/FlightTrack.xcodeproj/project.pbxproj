@@ -549,10 +549,12 @@
 		581A0331155EF723009872B3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FlightTrack/FlightTrack-Prefix.pch";
 				INFOPLIST_FILE = "FlightTrack/FlightTrack-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				USER_HEADER_SEARCH_PATHS = "Kal/**";
 				WRAPPER_EXTENSION = app;
 			};
@@ -577,6 +579,7 @@
 				581A0331155EF723009872B3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
