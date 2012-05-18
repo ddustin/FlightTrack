@@ -339,7 +339,8 @@ static BOOL includeMinor = NO;
     
     [format setTimeZone:[NSTimeZone timeZoneWithAbbreviation:timeZone]];
     
-    [format setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss.sss"];
+    [format setDateFormat:@"yyyy-MM-dd'T'HH:mm"];
+    [format setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.sss"];
     
     return [format dateFromString:string];
 }
