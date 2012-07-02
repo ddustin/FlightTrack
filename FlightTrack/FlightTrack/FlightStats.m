@@ -51,14 +51,14 @@ static NSString* decodeFromPercentEscapeString(NSString *string) {
             
             NSMutableDictionary *params = [[paramsOrig mutableCopy] autorelease];
             
-            NSString *appId = @"17df6e9e";
-            NSString *appKey = @"018db42573413fe8a050380207cff14a";
+            [params setObject:@"8461" forKey:@"login.accountID"];
+            [params setObject:@"ddustin" forKey:@"login.userID"];
+            [params setObject:@"60etcoms" forKey:@"login.password"];
             
             NSMutableURLRequest *request = [[NSMutableURLRequest new] autorelease];
             
             NSString *urlString =
-            [NSString stringWithFormat:@"https://api.flightstats.com/flex/flightstatus/v9/xml/"
-            "%@?appId=%@&appKey=%@", service, appId, appKey];
+            [NSString stringWithFormat:@"http://www.pathfinder-xml.com/development/xml?Service=%@", service];
             
             [request setURL:[NSURL URLWithString:urlString]];
             
